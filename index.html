@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>streech</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Scratchの基本エンジンを外部から読み込み -->
+    <script src="https://jsdelivr.net"></script>
+    <script src="https://jsdelivr.net"></script>
+</head>
+<body>
+    <!-- 上部ナビゲーションバー（ここだけ緑になります） -->
+    <nav class="scratch-nav">
+        <div class="nav-left">
+            <!-- あなたが描いてくれた最高のロゴ -->
+            <img src="streech.svg" alt="streech" class="nav-logo">
+            
+            <!-- ファイルメニュー -->
+            <div class="nav-menu">
+                <button class="menu-btn" id="fileMenuBtn">ファイル</button>
+                <div class="menu-dropdown" id="fileDropdown">
+                    <button id="menuNew">新規</button>
+                    <button id="menuLoad">コンピューターから読み込む</button>
+                    <button id="menuSave">コンピューターに保存する</button>
+                </div>
+                <input type="file" id="fileInput" accept=".sb3" style="display: none;">
+            </div>
+
+            <!-- ターボモードのスイッチ -->
+            <div class="turbo-container">
+                <label class="switch">
+                    <input type="checkbox" id="turboToggle">
+                    <span class="slider"></span>
+                </label>
+                <span class="turbo-label">ターボモード</span>
+            </div>
+
+            <!-- ⚙️ 設定メニュー（ダークモード） -->
+            <div class="nav-menu">
+                <button class="menu-btn" id="settingsMenuBtn">⚙️ 設定</button>
+                <div class="menu-dropdown" id="settingsDropdown">
+                    <div class="menu-item-toggle">
+                        <span>🌙 ダークモード</span>
+                        <label class="switch">
+                            <input type="checkbox" id="darkModeToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- プロジェクト名を入力する欄 -->
+            <input type="text" class="project-title" value="無題のプロジェクト" id="projectTitle">
+        </div>
+    </nav>
+
+    <!-- エディタのメイン画面（左がブロック、右がステージ） -->
+    <div class="editor-workspace">
+        <div id="blocklyDiv" class="block-area"></div>
+        <div class="stage-area">
+            <div id="stageDiv" class="scratch-stage">
+                <canvas id="stageCanvas" width="480" height="360"></canvas>
+            </div>
+            <div class="controls">
+                <button id="greenFlag" class="control-btn flag">🏁</button>
+                <button id="stopSign" class="control-btn stop">🛑</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 処理を行うメインのプログラムを繋ぐ -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
