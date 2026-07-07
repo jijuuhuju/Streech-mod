@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>streech</title>
+    <!-- 本家デザインデータを読み込み -->
+    <link rel="stylesheet" href="js/scratch-gui.css">
     <link rel="stylesheet" href="css/style.css">
-    <!-- あなたのリポジトリ内の軽量コアファイルを読み込み -->
+    
+    <!-- 軽量コアファイルを順番に読み込み -->
     <script src="js/scratch-vm.min.js"></script>
     <script src="js/vertical.js"></script>
+    <!-- 画面を組み立てるファイルを読み込み -->
+    <script src="js/scratch-gui.min.js"></script>
 </head>
 <body>
-    <!-- 本家 scratch-gui がエディタ全体を自動生成してはめ込むための土台 -->
     <div id="scratch-gui-root"></div>
-
-    <!-- メインプログラムの読み込み -->
     <script type="module" src="js/app.js"></script>
 </body>
 </html>
