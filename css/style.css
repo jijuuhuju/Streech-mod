@@ -1,6 +1,6 @@
-/* 本家 scratch-gui のスタイルを streech の緑色に上書きする設定 */
 :root {
     --streech-green: #04cd07;
+    --scratch-blue: #4c97ff; /* 本家公式のあの青色 */
 }
 
 body {
@@ -9,17 +9,85 @@ body {
     overflow: hidden;
 }
 
-/* 🟢 本物のナビゲーションバー（メニューバー）の背景を緑色に強制変更 */
-div[class*="menu-bar_menu-bar"] {
-    background-color: var(--streech-green) !important;
+div[class*="menu-bar_menu-bar"] { background-color: var(--streech-green) !important; }
+div[class*="menu-bar_menu-bar-item"]:hover { background-color: rgba(0, 0, 0, 0.15) !important; }
+div[class*="menu_menu-contents"] { z-index: 99999 !important; }
+
+/* 🔵 本家Scratch公式準拠のロード画面デザイン */
+#scratch-loader {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: var(--scratch-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    transition: opacity 0.2s ease;
 }
 
-/* ナビゲーションバーの中のボタンや文字のホバー色を調整 */
-div[class*="menu-bar_menu-bar-item"]:hover {
-    background-color: rgba(0, 0, 0, 0.15) !important;
+.loader_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #ffffff;
 }
 
-/* ⚙️ 設定メニュー（ダークモード）を追加するためのポップアップの土台 */
-div[class*="menu_menu-contents"] {
-    z-index: 99999 !important;
+/* 本物のブロックアニメーション（SVG風グラフィックをCSSで再現） */
+.loader_block-animation {
+    width: 60px;
+    height: 80px;
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.loader_top-block, .loader_bottom-block {
+    width: 50px;
+    height: 24px;
+    background-color: rgba(255, 255, 255, 0.35); /* 半透明の白ブロック */
+    border-radius: 4px;
+    position: absolute;
+    left: 5px;
+}
+
+/* ブロックの上の凸（カチッとはまる部分） */
+.loader_top-block::before, .loader_bottom-block::before {
+    content: "";
+    position: absolute;
+    top: -5px; left: 10px;
+    width: 12px; height: 6px;
+    background-color: rgba(255, 255, 255, 0.35);
+    border-radius: 3px 3px 0 0;
+}
+
+/* 上下のブロックが近づいて合体する公式ループアニメーション */
+.loader_top-block {
+    top: 10px;
+    animation: topBlockMove 1.5s infinite ease-in-out;
+}
+.loader_bottom-block {
+    top: 44px;
+    animation: bottomBlockMove 1.5s infinite ease-in-out;
+}
+
+.loader_title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.loader_status {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* 🔄 公式モーションの再現 */
+@keyframes topBlockMove {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); } /* 下に降りて合体 */
+}
+@keyframes bottomBlockMove {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); } /* 上に上がって合体 */
 }
