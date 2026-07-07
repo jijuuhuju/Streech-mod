@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>streech</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Scratchの基本エンジンを外部から読み込み -->
-    <script src="https://jsdelivr.net"></script>
-    <script src="https://jsdelivr.net"></script>
+    <!-- 【軽量化対応】外部URLを使わず、自分のリポジトリ内の軽いファイルを読み込む -->
+    <script src="js/scratch-vm.min.js"></script>
+    <script src="js/vertical.js"></script>
 </head>
 <body>
-    <!-- 上部ナビゲーションバー（ここだけ緑になります） -->
+    <!-- 上部ナビゲーションバー（ここだけ緑） -->
     <nav class="scratch-nav">
         <div class="nav-left">
-            <!-- あなたが描いてくれた最高のロゴ -->
             <img src="streech.svg" alt="streech" class="nav-logo">
             
             <!-- ファイルメニュー -->
@@ -27,7 +26,7 @@
                 <input type="file" id="fileInput" accept=".sb3" style="display: none;">
             </div>
 
-            <!-- ターボモードのスイッチ -->
+            <!-- ターボモード -->
             <div class="turbo-container">
                 <label class="switch">
                     <input type="checkbox" id="turboToggle">
@@ -36,7 +35,7 @@
                 <span class="turbo-label">ターボモード</span>
             </div>
 
-            <!-- ⚙️ 設定メニュー（ダークモード） -->
+            <!-- ⚙️ 設定メニュー -->
             <div class="nav-menu">
                 <button class="menu-btn" id="settingsMenuBtn">⚙️ 設定</button>
                 <div class="menu-dropdown" id="settingsDropdown">
@@ -50,12 +49,11 @@
                 </div>
             </div>
 
-            <!-- プロジェクト名を入力する欄 -->
             <input type="text" class="project-title" value="無題のプロジェクト" id="projectTitle">
         </div>
     </nav>
 
-    <!-- エディタのメイン画面（左がブロック、右がステージ） -->
+    <!-- エディタレイアウト（白とグレー） -->
     <div class="editor-workspace">
         <div id="blocklyDiv" class="block-area"></div>
         <div class="stage-area">
@@ -69,7 +67,6 @@
         </div>
     </div>
 
-    <!-- 処理を行うメインのプログラムを繋ぐ -->
     <script type="module" src="js/app.js"></script>
 </body>
 </html>
