@@ -3,30 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>streech(ストリーチ)</title>
+    <title>streech</title>
     <link rel="icon" type="image/svg+xml" href="streech.svg">
+    
+    <!-- 🔵 画面を正しく組み立てるための世界共通ライブラリを接続（これでフリーズが直ります） -->
+    <script src="https://unpkg.com"></script>
+    <script src="https://unpkg.com"></script>
+
+    <!-- あなたのリポジトリ内のローカルデザインデータ -->
     <link rel="stylesheet" href="js/scratch-gui.css">
     <link rel="stylesheet" href="css/style.css">
+    
+    <!-- 材料ファイルを順番通りに強制読み込み -->
     <script src="js/scratch-vm.min.js" defer></script>
     <script src="js/vertical.js" defer></script>
     <script src="js/scratch-gui.min.js" defer></script>
+    <script src="js/blocks.js" type="module"></script>
 </head>
 <body>
-    <!-- 🔵 本家Scratch公式と100%同じ青いロード画面（絵文字は一切使いません） -->
-    <div id="scratch-loader" class="loader_loading-screen">
+    <!-- 本物そっくりの青いロード画面（ブロックが合体するループアニメーション） -->
+    <div id="scratch-loader">
         <div class="loader_container">
-            <!-- 中央でアニメーションする本物のブロックグラフィック -->
             <div class="loader_block-animation">
                 <div class="loader_top-block"></div>
                 <div class="loader_bottom-block"></div>
             </div>
             <div class="loader_title">Loading Project</div>
-            <div class="loader_status" id="loaderStatus">Creating blocks...</div>
+            <div class="loader_status">Creating blocks...</div>
         </div>
     </div>
 
-    <!-- 本物エディタの受け皿 -->
+    <!-- 本物エディタがはめ込まれる場所 -->
     <div id="scratch-gui-root"></div>
+
+    <!-- メインプログラムの起動 -->
     <script src="js/app.js" type="module"></script>
 </body>
 </html>
