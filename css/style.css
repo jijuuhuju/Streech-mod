@@ -1,0 +1,200 @@
+:root {
+    --streech-nav-green: #04cd07;    /* あなたの作ったロゴの濃い緑 */
+    --scratch-bg-gray: #f9f9f9;      /* 本家エディタの背景グレー */
+    --scratch-border: #e5e5e5;       /* 本家の境界線のグレー */
+    --text-white: #ffffff;
+    --text-dark: #575e75;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: var(--scratch-bg-gray);
+}
+
+/* 【 streech 独自】一番上のナビゲーションバーだけ緑 */
+.scratch-nav {
+    background-color: var(--streech-nav-green);
+    height: 48px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    color: var(--text-white);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-logo {
+    height: 32px;
+    cursor: pointer;
+}
+
+.nav-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.menu-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.menu-btn:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.menu-dropdown {
+    display: none;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
+    border-radius: 4px;
+    z-index: 1000;
+    padding: 5px 0;
+}
+
+.menu-dropdown button {
+    color: #333;
+    padding: 10px 16px;
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.menu-dropdown button:hover {
+    background-color: #f1f1f1;
+}
+
+.menu-item-toggle {
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.turbo-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: .2s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .2s;
+    border-radius: 50%;
+}
+
+input:checked + .slider { background-color: #ffbc00; }
+input:checked + .slider:before { transform: translateX(14px); }
+
+.project-title {
+    background: rgba(0, 0, 0, 0.15);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    outline: none;
+}
+
+/* 💻 ここから下は本家Scratchと全く同じ配置・デザイン */
+.editor-workspace {
+    display: flex;
+    flex: 1;
+    background-color: var(--scratch-bg-gray);
+}
+
+.block-area {
+    flex: 7;
+    border-right: 1px solid var(--scratch-border);
+    background-color: #ffffff;
+}
+
+.stage-area {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background-color: #ffffff;
+}
+
+.scratch-stage {
+    width: 480px;
+    height: 360px;
+    border: 1px solid var(--scratch-border);
+    background-color: #ffffff;
+    border-radius: 4px;
+}
+
+.controls {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+    align-self: flex-start;
+    padding-left: 10px;
+}
+
+.control-btn {
+    border: 1px solid var(--scratch-border);
+    background: #ffffff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.control-btn:hover { background-color: #f0f0f0; }
