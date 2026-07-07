@@ -1,0 +1,45 @@
+/* 🌙 streech ダークモード専用スタイル */
+body.dark-mode { 
+    background-color: #1e1e24 !important; 
+}
+
+body.dark-mode .editor-workspace { 
+    background-color: #1e1e24; 
+}
+
+/* ブロックエリアの背景を暗いネイビーグレーに */
+body.dark-mode .block-area { 
+    background-color: #111115; 
+    border-right: 1px solid #2a2a35; 
+}
+
+body.dark-mode .stage-area { 
+    background-color: #1a1a20; 
+}
+
+/* ステージの背景を暗く */
+body.dark-mode .scratch-stage { 
+    border: 1px solid #2a2a35; 
+    background-color: #111115; 
+}
+
+/* 旗やストップの土台ボタンをダーク化 */
+body.dark-mode .control-btn { 
+    border: 1px solid #2a2a35; 
+    background: #252530; 
+    color: #ffffff; 
+}
+
+body.dark-mode .control-btn:hover { 
+    background-color: #303040; 
+}
+
+/* 設定メニューのドロップダウンも黒ベースに */
+body.dark-mode .menu-dropdown { 
+    background-color: #252530; 
+    color: #ffffff; 
+}
+
+body.dark-mode .menu-item-toggle { 
+    color: #ffffff; 
+}
