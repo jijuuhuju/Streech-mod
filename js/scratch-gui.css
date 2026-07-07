@@ -1,0 +1,18 @@
+/* scratch-gui core style definition */
+html, body, #scratch-gui-root {
+    width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; user-select: none;
+}
+div[class*="gui_page-wrapper"] { display: flex; flex-direction: column; width: 100%; height: 100%; background-color: #f9f9f9; }
+div[class*="gui_flex-wrapper"] { display: flex; flex-direction: row; flex: 1; overflow: hidden; }
+div[class*="gui_editor-wrapper"] { display: flex; flex-direction: column; flex: 1; border-right: 1px solid #e5e5e5; background: #fff; position: relative; }
+div[class*="gui_stage-and-target-wrapper"] { display: flex; flex-direction: column; width: 480px; min-width: 480px; background-color: #f9f9f9; padding: 10px; box-sizing: border-box; gap: 10px; }
+div[class*="controls_controls-container"] { display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 12px; height: 40px; padding-left: 4px; }
+div[class*="sprite-selector_sprite-selector"] { display: flex; flex-direction: column; flex: 1; background: #fff; border: 1px solid #e5e5e5; border-radius: 4px; padding: 12px; }
+div[class*="sprite-info_sprite-info"] { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
+div[class*="gui_tab-list"] { display: flex; background-color: #f0f4f9; border-bottom: 1px solid #e5e5e5; height: 40px; }
+div[class*="gui_tab"] { display: flex; align-items: center; justify-content: center; padding: 0 24px; font-size: 13px; font-weight: bold; color: #575e75; cursor: pointer; border-bottom: 3px solid transparent; }
+div[class*="gui_is-selected"] { border-bottom: 3px solid #04cd07; color: #04cd07; }
+div[class*="paint-editor_paint-editor"] { display: flex; flex-direction: column; width: 100%; height: 100%; background-color: #f0f4f9; }
+.blocklyToolboxCategory { padding-left: 4px; padding-right: 8px; margin-bottom: 4px; }
+.blocklyTreeLabel { font-size: 12px; font-weight: bold; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
