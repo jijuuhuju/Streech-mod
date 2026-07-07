@@ -3,28 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>streech</title>
-    
-    <!-- 🟢 【追加】streech.svg をブラウザのタブのアイコン（ファビコン）に設定する命令 -->
+    <title>streech(ストリーチ)</title>
     <link rel="icon" type="image/svg+xml" href="streech.svg">
-    
-    <!-- 本家デザインデータを読み込み -->
     <link rel="stylesheet" href="js/scratch-gui.css">
     <link rel="stylesheet" href="css/style.css">
-    
-    <!-- 軽量コアファイルを正しい順番で確実に読み込み -->
-    <script src="js/scratch-vm.min.js"></script>
-    <script src="js/vertical.js"></script>
-    <script src="js/scratch-gui.min.js"></script>
-    
-    <!-- ブロックの設計図を先に読み込み -->
-    <script src="js/blocks.js" type="module"></script>
+    <script src="js/scratch-vm.min.js" defer></script>
+    <script src="js/vertical.js" defer></script>
+    <script src="js/scratch-gui.min.js" defer></script>
 </head>
 <body>
-    <!-- 本物エディタ全体がここに自動生成されます -->
-    <div id="scratch-gui-root"></div>
+    <!-- 🔵 本家Scratch公式と100%同じ青いロード画面（絵文字は一切使いません） -->
+    <div id="scratch-loader" class="loader_loading-screen">
+        <div class="loader_container">
+            <!-- 中央でアニメーションする本物のブロックグラフィック -->
+            <div class="loader_block-animation">
+                <div class="loader_top-block"></div>
+                <div class="loader_bottom-block"></div>
+            </div>
+            <div class="loader_title">Loading Project</div>
+            <div class="loader_status" id="loaderStatus">Creating blocks...</div>
+        </div>
+    </div>
 
-    <!-- 最後にメインの心臓プログラムを起動 -->
+    <!-- 本物エディタの受け皿 -->
+    <div id="scratch-gui-root"></div>
     <script src="js/app.js" type="module"></script>
 </body>
 </html>
