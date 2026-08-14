@@ -9,7 +9,6 @@ window.addEventListener('load', () => {
         }
 
         const vm = new VirtualMachine();
-
         vm.attachStorage(new ScratchStorage());
         vm.attachRenderer(
             new ScratchRender(document.createElement('canvas'))
@@ -24,10 +23,9 @@ window.addEventListener('load', () => {
             hasCloudData: false
         };
 
-        // Scratch GUIを展開
+        // 絵文字を一切使わない本物のUIを画面に安全展開
         ScratchGUI.render(guiOptions, guiContainer);
 
-        // カスタムブロックを登録
         initCustomBlocks(vm);
 
         vm.runtime._hats['streech_when_alarm_rings'] = {
@@ -58,7 +56,6 @@ window.addEventListener('load', () => {
             });
         }
 
-        // ダークモードCSSを追加
         const darkLink = document.createElement('link');
         darkLink.rel = 'stylesheet';
         darkLink.href = 'css/dark.css';
@@ -67,9 +64,7 @@ window.addEventListener('load', () => {
         // VM起動
         vm.start();
 
-        // ==============================
         // ロード画面を消す
-        // ==============================
         const loader =
             document.getElementById('scratch-loader');
 
