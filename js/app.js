@@ -1,16 +1,75 @@
+import { initCustomBlocks, getToolboxXml } from './blocks.js';
+
+// タブレット環境のタイムラグを完全に克服する安全装置
 window.addEventListener('load', () => {
-    console.log('CHECK: app.js 読み込み成功');
+    setTimeout(() => {
+        if (!window.VirtualMachine || !window.ScratchGUI) {
+            console.error("材料の読み込みが間に合いませんでした。再読み込みしてください。");
+            return;
+        }
 
-    const loader = document.getElementById('scratch-loader');
+        const vm = new VirtualMachine();
+        vm.attachStorage(new ScratchStorage());
+        vm.attachRenderer(new ScratchRender(document.createElement('canvas')));
 
-    if (!loader) {
-        console.error('CHECK: scratch-loader が見つかりません');
-        return;
-    }
+        const guiContainer =
+            document.getElementById('scratch-gui-root');
 
-    console.log('CHECK: scratch-loader 発見');
+        const guiOptions = {
+            vm: vm,
+            toolboxXML: getToolboxXml(),
+            hasCloudData: false
+        };
 
-    loader.style.display = 'none';
+        // 絵文字を一切使わない本物のUIを画面に安全展開
+        ScratchGUI.render(guiOptions, guiContainer);
 
-    console.log('CHECK: ロード画面を消しました');
+        initCustomBlocks(vm);
+
+        vm.runtime._hats['streech_when_alarm_rings'] = {
+            restartExistingThreads: true,
+            edgeActivated: false
+        };
+
+        // メニュー切り替えのバインド
+        const turbo =
+            document.getElementById('turboToggle');
+
+        if (turbo) {
+            turbo.addEventListener('change', (e) => {
+                vm.setTurboMode(e.target.checked);
+            });
+        }
+
+        const dark =
+            document.getElementById('darkModeToggle');
+
+        if (dark) {
+            dark.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    document.body.classList.add('dark-mode');
+                } else {
+                    document.body.classList.remove('dark-mode');
+                }
+            });
+        }
+
+        const darkLink = document.createElement('link');
+        darkLink.rel = 'stylesheet';
+        darkLink.href = 'css/dark.css';
+        document.head.appendChild(darkLink);
+
+        // VM起動
+        vm.start();
+
+        // ロード画面を消す
+        const loader =
+            document.getElementById('scratch-loader');
+
+        if (loader) {
+            loader.style.display = 'none';
+        }
+
+        console.log("streech 起動成功！");
+    }, 500);
 });
