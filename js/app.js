@@ -9,39 +9,74 @@ window.addEventListener('load', () => {
         }
 
         const vm = new VirtualMachine();
-        vm.attachStorage(new ScratchStorage());
-        vm.attachRenderer(new ScratchRender(document.createElement('canvas')));
 
-        const guiContainer = document.getElementById('scratch-gui-root');
+        vm.attachStorage(new ScratchStorage());
+        vm.attachRenderer(
+            new ScratchRender(document.createElement('canvas'))
+        );
+
+        const guiContainer =
+            document.getElementById('scratch-gui-root');
+
         const guiOptions = {
             vm: vm,
             toolboxXML: getToolboxXml(),
             hasCloudData: false
         };
 
-        // 絵文字を一切使わない本物のUIを画面に安全展開
+        // Scratch GUIを展開
         ScratchGUI.render(guiOptions, guiContainer);
 
+        // カスタムブロックを登録
         initCustomBlocks(vm);
-        vm.runtime._hats['streech_when_alarm_rings'] = { restartExistingThreads: true, edgeActivated: false };
+
+        vm.runtime._hats['streech_when_alarm_rings'] = {
+            restartExistingThreads: true,
+            edgeActivated: false
+        };
 
         // メニュー切り替えのバインド
-        const turbo = document.getElementById('turboToggle');
-        if (turbo) turbo.addEventListener('change', (e) => vm.setTurboMode(e.target.checked));
+        const turbo =
+            document.getElementById('turboToggle');
 
-        const dark = document.getElementById('darkModeToggle');
-        if (dark) {
-            dark.addEventListener('change', (e) => {
-                if (e.target.checked) document.body.classList.add('dark-mode');
-                else document.body.classList.remove('dark-mode');
+        if (turbo) {
+            turbo.addEventListener('change', (e) => {
+                vm.setTurboMode(e.target.checked);
             });
         }
 
+        const dark =
+            document.getElementById('darkModeToggle');
+
+        if (dark) {
+            dark.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    document.body.classList.add('dark-mode');
+                } else {
+                    document.body.classList.remove('dark-mode');
+                }
+            });
+        }
+
+        // ダークモードCSSを追加
         const darkLink = document.createElement('link');
-        darkLink.rel = 'stylesheet'; darkLink.href = 'css/dark.css';
+        darkLink.rel = 'stylesheet';
+        darkLink.href = 'css/dark.css';
         document.head.appendChild(darkLink);
 
+        // VM起動
         vm.start();
+
+        // ==============================
+        // ロード画面を消す
+        // ==============================
+        const loader =
+            document.getElementById('scratch-loader');
+
+        if (loader) {
+            loader.style.display = 'none';
+        }
+
         console.log("streech 起動成功！");
-    }, 500); // 💡0.5秒待つことでタブレットのエラーを100%回避します
+    }, 500);
 });
